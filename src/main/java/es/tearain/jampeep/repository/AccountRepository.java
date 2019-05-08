@@ -1,18 +1,21 @@
 package es.tearain.jampeep.repository;
 
 import es.tearain.jampeep.model.Account;
+import es.tearain.jampeep.model.HibernateUtilSessionException;
 
 public interface AccountRepository {
 
-	Account createAccount();
+	void createAccount(Account account) throws HibernateUtilSessionException;
 
-	Account getAccountById(int id);
+	Account getAccount(int id) throws HibernateUtilSessionException;
 
-	Account getAccountByName(String name);
+	Account getAccount(String name) throws HibernateUtilSessionException;
 
-	void updateAccount();
+	void updateAccount(Account updatedAccount) throws HibernateUtilSessionException;
 
-	void deleteAccount();
+	void removeAccount(int id) throws HibernateUtilSessionException;
+
+	void removeAccount(String name) throws HibernateUtilSessionException;
 
 	String generatePassword();
 

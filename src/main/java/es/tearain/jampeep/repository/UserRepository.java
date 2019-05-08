@@ -1,18 +1,21 @@
 package es.tearain.jampeep.repository;
 
+import es.tearain.jampeep.model.HibernateUtilSessionException;
 import es.tearain.jampeep.model.User;
 
 public interface UserRepository {
 
-	User createUser();
+	void createUser(User user) throws HibernateUtilSessionException;
 
-	User getUserById(int id);
+	User getUser(int id) throws HibernateUtilSessionException;
 
-	User getUserByName(String name);
+	User getUser(String name) throws HibernateUtilSessionException;
 
-	void updateUser();
+	void updateUser(User updatedUser) throws HibernateUtilSessionException;
 
-	void deleteUser();
+	void removeUser(int id) throws HibernateUtilSessionException;
+
+	void removeUser(String Name) throws HibernateUtilSessionException;
 
 	void autoManagePasswordOnTrustedDevice();
 

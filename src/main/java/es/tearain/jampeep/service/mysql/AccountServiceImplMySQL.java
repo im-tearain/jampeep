@@ -4,6 +4,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import es.tearain.jampeep.model.Account;
+import es.tearain.jampeep.model.HibernateUtilSessionException;
 import es.tearain.jampeep.repository.AccountRepository;
 import es.tearain.jampeep.service.AccountService;
 
@@ -18,28 +19,33 @@ public class AccountServiceImplMySQL implements AccountService {
 	}
 
 	@Override
-	public Account createAccount() {
-		return this.accountRepository.createAccount();
+	public void createAccount(Account account) throws HibernateUtilSessionException {
+		this.accountRepository.createAccount(account);
 	}
 
 	@Override
-	public Account getAccountById(int id) {
-		return this.accountRepository.getAccountById(id);
+	public Account getAccount(int id) throws HibernateUtilSessionException {
+		return this.accountRepository.getAccount(id);
 	}
 
 	@Override
-	public Account getAccountByName(String name) {
-		return this.accountRepository.getAccountByName(name);
+	public Account getAccount(String name) throws HibernateUtilSessionException {
+		return this.accountRepository.getAccount(name);
 	}
 
 	@Override
-	public void updateAccount() {
-		this.accountRepository.updateAccount();
+	public void updateAccount(Account updatedAccount) throws HibernateUtilSessionException {
+		this.accountRepository.updateAccount(updatedAccount);
 	}
 
 	@Override
-	public void deleteAccount() {
-		this.accountRepository.deleteAccount();
+	public void removeAccount(int id) throws HibernateUtilSessionException {
+		this.accountRepository.removeAccount(id);
+	}
+
+	@Override
+	public void removeAccount(String name) throws HibernateUtilSessionException {
+		this.accountRepository.removeAccount(name);
 	}
 
 	@Override

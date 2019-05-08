@@ -3,6 +3,7 @@ package es.tearain.jampeep.service.mysql;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import es.tearain.jampeep.model.HibernateUtilSessionException;
 import es.tearain.jampeep.model.User;
 import es.tearain.jampeep.repository.UserRepository;
 import es.tearain.jampeep.service.UserService;
@@ -18,28 +19,33 @@ public class UserServiceImplMySQL implements UserService {
 	}
 
 	@Override
-	public User createUser() {
-		return this.userRepository.createUser();
+	public void createUser(User user) throws HibernateUtilSessionException {
+		this.userRepository.createUser(user);
 	}
 
 	@Override
-	public User getUserById(int id) {
-		return this.userRepository.getUserById(id);
+	public User getUser(int id) throws HibernateUtilSessionException {
+		return this.userRepository.getUser(id);
 	}
 
 	@Override
-	public User getUserByName(String name) {
-		return this.userRepository.getUserByName(name);
+	public User getUser(String name) throws HibernateUtilSessionException {
+		return this.userRepository.getUser(name);
 	}
 
 	@Override
-	public void updateUser() {
-		this.userRepository.updateUser();
+	public void updateUser(User updatedUser) throws HibernateUtilSessionException {
+		this.userRepository.updateUser(updatedUser);
 	}
 
 	@Override
-	public void deleteUser() {
-		this.userRepository.deleteUser();
+	public void removeUser(int id) throws HibernateUtilSessionException {
+		this.userRepository.removeUser(id);
+	}
+
+	@Override
+	public void removeUser(String name) throws HibernateUtilSessionException {
+		this.userRepository.removeUser(name);
 	}
 
 	@Override
